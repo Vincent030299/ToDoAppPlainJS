@@ -1,31 +1,35 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+// Since it didnt required security and the application is made with plain js its stored in an array with objects
+const loginDetails = [
+    {
+        user: "vincent",
+        pass: "randompassword"
+    }
+];
 
-const app = express();
+let getCookie = (name) => {
+    var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return v ? v[2] : null;
+}
 
-let serverAdress = {
-    origin: "http://localhost:8081"
-  };
+let setCookie = (name, value, days) => {
+    var d = new Date;
+    d.setTime(d.getTime() + 24*60*60*1000*days);
+    document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+}
 
-app.use(cors(serverAdress));
+const passwordInput = document.querySelector("#password");
+const usernameInput = document.querySelector("#username");
 
-// Parse the requests to application/json from content-type
-app.use(bodyParser.json());
+let check = () => {
+    if (passwordInput.value == loginDetails[0].pass && usernameInput.value == loginDetails[0].user) {
+        setCookie("username", usernameInput.value,1);
+    } else{
+        console.log('no match');
+    }
+}
 
-// Parse the requests to application/x-www-form-urlencode from content-type
-app.use(bodyParser.urlencoded({ extended: true }));
+if (document.cookie != ""){
+    console.log(getCookie("username"));
+}
 
-// The base root
-app.get("/", (req,res) => {
-    // Return this as a json
-    res.json({
-        message: "Welcome to the to do app"
-    });
-});
-
-// Set the port and where the port should listen to 8080
-const port = process.env.port || 8080;
-app.listen(port, () => {
-    console.log(`Server is  ${port}`);
-});
+let loginButton = document.querySelector("#login").addEventListener('click', check);
