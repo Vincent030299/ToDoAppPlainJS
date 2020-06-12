@@ -2,6 +2,7 @@ if (getCookie("username") == loginDetails[0].user) {
     let name = document.querySelector("#name");
     let tag = document.querySelector("#tag");
     let toDos = [];
+    // create a new cookie
     let createTagFunction = () => {
         toDos[toDos.length] = {
             name: name.value,

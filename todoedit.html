@@ -3,11 +3,29 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     </head>
     <body>
-        <form>
-            <input type="text" id="nameEdit" required>
-            <input type="text" id="tagEdit" required>
-            <input type="button" id="edit" value="edit tag">
-        </form>
+        <nav>
+            <div class="nav-wrapper blue">
+              <ul id="nav-mobile" class="hide-on-med-and-down">
+                <li><a href="todo.html">Overview</a></li>
+                <li><a href="createTodo.html">Create</a></li>
+                <li><a href="index.html">Login</a></li>
+              </ul>
+            </div>
+          </nav>
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Edit a ToDo</span>
+                        <form>
+                            <input type="text" id="nameEdit" required>
+                            <input type="text" id="tagEdit" required>
+                            <input type="button" class="btn btn-succes" id="edit" value="edit tag">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 
     <script src="index.js"></script>
