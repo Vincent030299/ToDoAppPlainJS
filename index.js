@@ -23,13 +23,10 @@ const usernameInput = document.querySelector("#username");
 let check = () => {
     if (passwordInput.value == loginDetails[0].pass && usernameInput.value == loginDetails[0].user) {
         setCookie("username", usernameInput.value,1);
+        location.href = "createTodo.html";
     } else{
         console.log('no match');
     }
-}
-
-if (document.cookie != ""){
-    console.log(getCookie("username"));
 }
 
 let loginButton = document.querySelector("#login").addEventListener('click', check);
